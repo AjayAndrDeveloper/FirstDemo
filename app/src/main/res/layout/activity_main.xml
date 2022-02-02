@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/textQuotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Text Quotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fav_quotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Favorite Quotes"
+        app:layout_constraintEnd_toEndOf="@+id/textQuotes"
+        app:layout_constraintStart_toStartOf="@+id/textQuotes"
+        app:layout_constraintTop_toBottomOf="@+id/textQuotes" />
+
+    <Button
+        android:id="@+id/viewPagerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Text-ImageCombo"
+        app:layout_constraintEnd_toEndOf="@+id/fav_quotes"
+        app:layout_constraintStart_toStartOf="@+id/fav_quotes"
+        app:layout_constraintTop_toBottomOf="@+id/fav_quotes" />
+</androidx.constraintlayout.widget.ConstraintLayout>
