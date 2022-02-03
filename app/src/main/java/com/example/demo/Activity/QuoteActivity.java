@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.demo.Adapter.QuoteAdapter;
-import com.example.demo.Fragments.TextFragment;
 import com.example.demo.Model.Category;
 import com.example.demo.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,7 +46,7 @@ public class QuoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(QuoteActivity.this);
 
-                View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.custom_dialobox_quotes, null, false);
+                View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.custom_dialogbox_quotes, null, false);
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();

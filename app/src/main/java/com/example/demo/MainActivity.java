@@ -9,11 +9,12 @@ import android.widget.Button;
 
 import com.example.demo.Activity.FavoriteQuotesActivity;
 import com.example.demo.Activity.GridLayoutExampleActivity;
+import com.example.demo.Activity.JsonPracticeActivity;
 import com.example.demo.Activity.QuotesCategoryActivity;
 import com.example.demo.Utilies.CommonIntent;
 
 public class MainActivity extends AppCompatActivity {
-   Button textQuotes ,favQuotes,textImageComboBtn,gridBtn;
+   Button textQuotes ,favQuotes,textImageComboBtn,gridBtn,gettingDataBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         favQuotes = findViewById(R.id.fav_quotes);
         textImageComboBtn = findViewById(R.id.viewPagerBtn);
         gridBtn = findViewById(R.id.GridLayoutBtn);
+        gettingDataBtn = findViewById(R.id.jsonBtn);
         Intent intent = new Intent(MainActivity.this,QuotesCategoryActivity.class);
         textQuotes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CommonIntent.intentActivity(MainActivity.this, GridLayoutExampleActivity.class);
             }
+        });
+        gettingDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonIntent.intentActivity(MainActivity.this, JsonPracticeActivity.class);            }
         });
     }
 }

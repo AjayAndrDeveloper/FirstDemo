@@ -46,4 +46,14 @@
         app:layout_constraintEnd_toEndOf="@+id/viewPagerBtn"
         app:layout_constraintStart_toStartOf="@+id/viewPagerBtn"
         app:layout_constraintTop_toBottomOf="@+id/viewPagerBtn" />
+
+    <Button
+        android:id="@+id/jsonBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Getting data from JSON"
+        app:layout_constraintEnd_toEndOf="@+id/GridLayoutBtn"
+        app:layout_constraintStart_toStartOf="@+id/GridLayoutBtn"
+        app:layout_constraintTop_toBottomOf="@+id/GridLayoutBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
