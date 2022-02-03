@@ -23,6 +23,8 @@ public class TxtImageComboActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Text Quotes"));
         tabLayout.addTab(tabLayout.newTab().setText("Image Quotes"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
 
 //        FragmentAdapter fragmentAdapter =  new FragmentAdapter(getSupportFragmentManager());

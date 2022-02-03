@@ -9,6 +9,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabMode"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:background="@color/black"

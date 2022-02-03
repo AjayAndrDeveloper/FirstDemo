@@ -36,4 +36,14 @@
         app:layout_constraintEnd_toEndOf="@+id/fav_quotes"
         app:layout_constraintStart_toStartOf="@+id/fav_quotes"
         app:layout_constraintTop_toBottomOf="@+id/fav_quotes" />
+
+    <Button
+        android:id="@+id/GridLayoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="GridLayout-Practice"
+        app:layout_constraintEnd_toEndOf="@+id/viewPagerBtn"
+        app:layout_constraintStart_toStartOf="@+id/viewPagerBtn"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
