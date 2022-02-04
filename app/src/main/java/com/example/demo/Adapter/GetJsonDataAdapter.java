@@ -2,6 +2,7 @@ package com.example.demo.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,8 @@ public class GetJsonDataAdapter extends RecyclerView.Adapter<GetJsonDataAdapter.
     ArrayList<QuotesModel> quotesModelArrayList = new ArrayList<>();
      Context context;
      boolean flag =true;
-     int[] colorArray = {Color.argb(44,55,66,22),Color.argb(44,55,66,22),Color.argb(44,55,0,22),Color.argb(40,50,66,0),Color.argb(44,52,16,221)};
+     int[] colorArray = {Color.rgb( 150,100,210),Color.rgb( 235, 82, 52),Color.rgb(205, 235, 52),Color.rgb(52, 235, 86),Color.rgb(235, 52, 86)};
+//    int[] colorArray = {R.color.red1,R.color.red2,R.color.red3,R.color.red4,R.color.red5};
     Random rnd = new Random();
     int color;
 
@@ -46,13 +48,10 @@ public class GetJsonDataAdapter extends RecyclerView.Adapter<GetJsonDataAdapter.
     public void onBindViewHolder(@NonNull JViewHolder holder, int position) {
         holder.quotes.setText(quotesModelArrayList.get(position).getText());
         holder.authorName.setText("-"+quotesModelArrayList.get(position).getAuthor());
-//
-//        if (position%5==0) {
-//            flag = false;
-//            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-//        }
-            for(int i = 0;i>colorArray.length;i++){
-        holder.constraintLayout.setBackgroundColor(colorArray[i]);};
+
+                holder.constraintLayout.setBackgroundColor(colorArray[position%5]);
+
+
     }
 
     @Override
