@@ -8,21 +8,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.demo.Adapter.GalleryAdapter;
-import com.example.demo.Listners.PhotoListner;
+import com.example.demo.Listners.FolderListener;
 import com.example.demo.Model.GalleryModel;
 import com.example.demo.R;
 import com.example.demo.Utilies.ImageGallery;
 
 import java.util.ArrayList;
 
-public class GalleryActivity extends AppCompatActivity implements PhotoListner {
+public   class GalleryActivity extends AppCompatActivity implements FolderListener {
         RecyclerView recyclerView;
         GalleryAdapter galleryAdapter;
         ArrayList<GalleryModel> imageArray;
@@ -72,9 +72,13 @@ public class GalleryActivity extends AppCompatActivity implements PhotoListner {
     }
 
     @Override
-    public void onPhotoClick(String path) {
-        galleryAdapter.setData(imageArray,false);
-//        Toast.makeText(this, "  " + path, Toast.LENGTH_SHORT).show();
+    public void onPhotoClick(String path,String folderName) {
+//        galleryAdapter.setData(imageArray,false);
+        Toast.makeText(this, "  " + folderName, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,ImageDisplayActivity.class);
+        intent.putExtra("path",path);
+        intent.putExtra("folderName",folderName);
+        startActivity(intent);
             }
 
 }

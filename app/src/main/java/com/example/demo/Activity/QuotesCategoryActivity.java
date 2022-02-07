@@ -17,12 +17,12 @@ import android.widget.Toast;
 import com.example.demo.Adapter.QuotesCategoryAdapter;
 import com.example.demo.Model.Category;
 import com.example.demo.R;
-import com.example.demo.Listners.CategoryClickListner;
+import com.example.demo.Listners.CategoryClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class QuotesCategoryActivity extends AppCompatActivity implements CategoryClickListner {
+public class QuotesCategoryActivity extends AppCompatActivity implements CategoryClickListener {
     RecyclerView recyclerView;
     String[] categories;
     String[] imageUrl;

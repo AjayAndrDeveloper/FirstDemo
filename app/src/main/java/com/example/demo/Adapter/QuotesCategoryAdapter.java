@@ -2,7 +2,6 @@ package com.example.demo.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.demo.Model.Category;
 import com.example.demo.R;
-import com.example.demo.Listners.CategoryClickListner;
+import com.example.demo.Listners.CategoryClickListener;
 
 import java.util.ArrayList;
 
@@ -24,17 +23,17 @@ public class QuotesCategoryAdapter extends RecyclerView.Adapter<QuotesCategoryAd
     ArrayList<Category> categoryArrayList = new ArrayList<>();
     Context context;
 
-    CategoryClickListner categoryClickListner;
+    CategoryClickListener categoryClickListener;
 
 //    public QuotesCategoryAdapter(ArrayList<Category> categoryArrayList, Context context) {
 //        this.categoryArrayList = categoryArrayList;
 //        this.context = context;
 //    }
 
-    public QuotesCategoryAdapter(ArrayList<Category> categoryArrayList, Context context, CategoryClickListner categoryClickListner ) {
+    public QuotesCategoryAdapter(ArrayList<Category> categoryArrayList, Context context, CategoryClickListener categoryClickListener) {
         this.categoryArrayList = categoryArrayList;
         this.context = context;
-        this.categoryClickListner = categoryClickListner;
+        this.categoryClickListener = categoryClickListener;
 
 
     }
@@ -57,7 +56,7 @@ public class QuotesCategoryAdapter extends RecyclerView.Adapter<QuotesCategoryAd
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                categoryClickListner.onCategoryClick(categoryArrayList.get(position).getCategory(),position,categoryArrayList.get(position));
+                categoryClickListener.onCategoryClick(categoryArrayList.get(position).getCategory(),position,categoryArrayList.get(position));
             }
         });
     }

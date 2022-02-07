@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.demo.Listners.PhotoListner;
+import com.example.demo.Listners.FolderListener;
 import com.example.demo.Model.GalleryModel;
 import com.example.demo.R;
 
@@ -22,17 +22,24 @@ import java.util.ArrayList;
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder> {
     ArrayList<GalleryModel> imageOfArray = new ArrayList<>();
     Context context;
-    protected PhotoListner photoListner;
+    protected FolderListener folderListener;
     boolean isFolder = true;
 
-    public GalleryAdapter(ArrayList<GalleryModel> imageOfArray, Context context, PhotoListner photoListner) {
+    public GalleryAdapter(ArrayList<GalleryModel> imageOfArray, Context context, FolderListener folderListener) {
         this.imageOfArray = imageOfArray;
         this.context = context;
-        this.photoListner = photoListner;
+        this.folderListener = folderListener;
     }
   public void setData(ArrayList<GalleryModel> list,boolean isFolder){
         imageOfArray =  new ArrayList<>();
-        imageOfArray.addAll(list);
+//        if ((imageOfArray.contains(imageOfArray))){
+//
+//        }
+//        else {
+            imageOfArray.addAll(list);
+//        }
+
+
         notifyDataSetChanged();
         this.isFolder = isFolder;
   }
@@ -46,22 +53,28 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
 
     @Override
     public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
-        String image = imageOfArray.get(position).getImagePath();
+        GalleryModel folders =  imageOfArray.get(position);
+        String imagePath = imageOfArray.get(position).getImagePath();
         String folder = imageOfArray.get(position).getFolderName();
-        Log.d("realme", "onBindViewHolder: "   + image);
-        if (isFolder){holder.textView.setText(folder);
-            holder.textView.setVisibility(View.VISIBLE);
-            holder.imageView.setVisibility(View.GONE);
-        }
-          else {
+        long id = imageOfArray.get(position).getBucketId();
+        Log.d("realme", "onBindViewHolder: "   + imagePath);
+//        if (isFolder){
+            holder.textView.setText(folder);
+//            holder.textView.setVisibility(View.VISIBLE);
+//            holder.imageView.setVisibility(View.GONE);
+//        }
+//          else {
 //              holder.textView.setVisibility(View.GONE);
-          holder.imageView.setVisibility(View.VISIBLE);
-             Glide.with(context).load(image).into(holder.imageView);}
+             holder.imageView.setVisibility(View.VISIBLE);
+             holder.textView.setText(folder);
+             Glide.with(context).load(folders.getFirstImage()).into(holder.imageView);
 
+//    }
+//
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                photoListner.onPhotoClick(image);
+                folderListener.onPhotoClick(imagePath,folder);
             }
         });
 

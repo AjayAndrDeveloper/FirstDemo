@@ -1,12 +1,7 @@
 package com.example.demo.Adapter;
 
-import static androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.demo.Activity.FavoriteQuotesActivity;
 import com.example.demo.Helper.HelperFav;
 import com.example.demo.Listners.updateActivity;
 import com.example.demo.R;
@@ -27,7 +21,7 @@ import java.util.ArrayList;
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     ArrayList<String> favList = new ArrayList<>();
     Context context;
-    updateActivity updateActivity;
+     updateActivity updateActivity;
 
     public FavAdapter(ArrayList<String> favList, Context context, com.example.demo.Listners.updateActivity updateActivity) {
         this.favList = favList;

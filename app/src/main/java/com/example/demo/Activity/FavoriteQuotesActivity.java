@@ -1,16 +1,10 @@
 package com.example.demo.Activity;
 
-import static androidx.constraintlayout.solver.widgets.ConstraintWidget.VISIBLE;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +12,6 @@ import android.widget.TextView;
 import com.example.demo.Adapter.FavAdapter;
 import com.example.demo.Helper.HelperFav;
 import com.example.demo.Listners.updateActivity;
-import com.example.demo.Model.Category;
 import com.example.demo.R;
 
 import java.util.ArrayList;
@@ -61,11 +54,12 @@ TextView textView;
 
 }
 
-    @Override
-    public void activityUpdation(ArrayList<String> arrayList) {
-      if(quotesData.size()==0){
-          textView.setVisibility(View.VISIBLE);
-      }
-    }
 
-}
+    @Override
+    public void activityUpdation(ArrayList<String> favList) {
+        if(quotesData.size()==0){
+            textView.setVisibility(View.VISIBLE);
+    }
+}}
+///    if(quotesData.size()==0){
+//          textView.setVisibility(View.VISIBLE);
