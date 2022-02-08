@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.demo.Listners.ImageListener;
 import com.example.demo.Model.ImageByFolderModel;
 import com.example.demo.R;
 
@@ -18,10 +19,11 @@ import java.util.ArrayList;
 public class BigScreenAdapter extends PagerAdapter {
     ArrayList<ImageByFolderModel> photoList;
     Context context;
-
-    public BigScreenAdapter(ArrayList<ImageByFolderModel> photoList, Context context) {
+    ImageListener imageListener;
+    public BigScreenAdapter(ArrayList<ImageByFolderModel> photoList, Context context,ImageListener imageListener) {
         this.photoList = photoList;
         this.context = context;
+        this.imageListener = imageListener;
     }
 
     @NonNull
@@ -32,6 +34,12 @@ public class BigScreenAdapter extends PagerAdapter {
         ImageView imageView = view.findViewById(R.id.imagesBig);
         Glide.with(view).load(photoList.get(position).getPicturePath()).into(imageView);
         container.addView(view);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageListener.setClickImage();
+            }
+        });
         return view;
 
     }

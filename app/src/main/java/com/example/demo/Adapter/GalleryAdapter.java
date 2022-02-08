@@ -56,6 +56,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
         GalleryModel folders =  imageOfArray.get(position);
         String imagePath = imageOfArray.get(position).getImagePath();
         String folder = imageOfArray.get(position).getFolderName();
+        int folderSize = imageOfArray.get(position).getNumberOfPics();
+
         long id = imageOfArray.get(position).getBucketId();
         Log.d("realme", "onBindViewHolder: "   + imagePath);
 //        if (isFolder){
@@ -74,7 +76,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                folderListener.onPhotoClick(imagePath,folder);
+                folderListener.onPhotoClick(imagePath,folder,folderSize);
             }
         });
 

@@ -40,7 +40,6 @@ public class QuoteActivity extends AppCompatActivity {
  //        Toast.makeText(this, currentCategory, Toast.LENGTH_SHORT).show();
 //
         dataQuotes=getQoutes(currentCategory);
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

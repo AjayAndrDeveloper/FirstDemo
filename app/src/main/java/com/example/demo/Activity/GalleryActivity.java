@@ -72,12 +72,13 @@ public   class GalleryActivity extends AppCompatActivity implements FolderListen
     }
 
     @Override
-    public void onPhotoClick(String path,String folderName) {
+    public void onPhotoClick(String path,String folderName,int folderSize) {
 //        galleryAdapter.setData(imageArray,false);
         Toast.makeText(this, "  " + folderName, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,ImageDisplayActivity.class);
         intent.putExtra("path",path);
         intent.putExtra("folderName",folderName);
+        intent.putExtra("folderSize",folderSize);
         startActivity(intent);
             }
 

@@ -24,6 +24,7 @@ public class ImageDisplayActivity extends AppCompatActivity implements PhotosCli
         GetALLImagesByFolder getALLImagesByFolder;
     String path;
     String folderName;
+    int foldersize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +32,10 @@ public class ImageDisplayActivity extends AppCompatActivity implements PhotosCli
         Intent intent = getIntent();
           path= intent.getStringExtra("path");
         folderName=  intent.getStringExtra("folderName");
+        foldersize = intent.getIntExtra("folderSize",0);
       recyclerView= findViewById(R.id.photoRecyclerView);
       folderHead= findViewById(R.id.folderHead);
-      folderHead.setText(folderName);
+      folderHead.setText(folderName +  "  " +" (" + foldersize +")");
       imageByFolderModelArrayList = new ArrayList<>();
       recyclerView.setLayoutManager(new GridLayoutManager(this,3));
       imageByFolderModelArrayList =  GetALLImagesByFolder.imageBy(path,this);
@@ -49,7 +51,7 @@ public class ImageDisplayActivity extends AppCompatActivity implements PhotosCli
         intent.putExtra("list",pics);
         intent.putExtra("position",position);
         startActivity(intent);
-        Toast.makeText(this, "   "+ path +" "+ folderName, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "   "+ path +" "+ folderName, Toast.LENGTH_SHORT).show();
     }
 
 }
