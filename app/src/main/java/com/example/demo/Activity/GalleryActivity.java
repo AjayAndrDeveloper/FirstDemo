@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.demo.Adapter.GalleryAdapter;
 import com.example.demo.Listners.FolderListener;
-import com.example.demo.Model.GalleryModel;
+import com.example.demo.Model.ImgFolderModel;
 import com.example.demo.R;
 import com.example.demo.Utilies.ImageGallery;
 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public   class GalleryActivity extends AppCompatActivity implements FolderListener {
         RecyclerView recyclerView;
         GalleryAdapter galleryAdapter;
-        ArrayList<GalleryModel> imageArray;
+        ArrayList<ImgFolderModel> imageArray;
         TextView galleryNumber;
         private  static final int MY_READ_PERMISSION_CODE = 101;
 
@@ -45,7 +45,8 @@ public   class GalleryActivity extends AppCompatActivity implements FolderListen
               LoadImage();
           }
         recyclerView.setAdapter(galleryAdapter);
-          galleryNumber.setText("Photos +("+imageArray.size()+")");
+          if (imageArray.size()>0){
+          galleryNumber.setText("Photos +("+imageArray.size()+")");}
 
     }
 

@@ -13,36 +13,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.demo.Listners.FolderListener;
-import com.example.demo.Model.GalleryModel;
+import com.example.demo.Model.ImgFolderModel;
 import com.example.demo.R;
 
 import java.util.ArrayList;
 
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder> {
-    ArrayList<GalleryModel> imageOfArray = new ArrayList<>();
+    ArrayList<ImgFolderModel> imageOfArray = new ArrayList<>();
     Context context;
     protected FolderListener folderListener;
     boolean isFolder = true;
 
-    public GalleryAdapter(ArrayList<GalleryModel> imageOfArray, Context context, FolderListener folderListener) {
+    public GalleryAdapter(ArrayList<ImgFolderModel> imageOfArray, Context context, FolderListener folderListener) {
         this.imageOfArray = imageOfArray;
         this.context = context;
         this.folderListener = folderListener;
     }
-  public void setData(ArrayList<GalleryModel> list,boolean isFolder){
-        imageOfArray =  new ArrayList<>();
-//        if ((imageOfArray.contains(imageOfArray))){
+//  public void setData(ArrayList<GalleryModel> list,boolean isFolder){
+//        imageOfArray =  new ArrayList<>();
 //
-//        }
-//        else {
-            imageOfArray.addAll(list);
-//        }
-
-
-        notifyDataSetChanged();
-        this.isFolder = isFolder;
-  }
+//            imageOfArray.addAll(list);
+//
+//        notifyDataSetChanged();
+//        this.isFolder = isFolder;
+//  }
     @NonNull
     @Override
     public GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,13 +48,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
 
     @Override
     public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
-        GalleryModel folders =  imageOfArray.get(position);
+        ImgFolderModel folders =  imageOfArray.get(position);
         String imagePath = imageOfArray.get(position).getImagePath();
         String folder = imageOfArray.get(position).getFolderName();
         int folderSize = imageOfArray.get(position).getNumberOfPics();
+        String newline = System.lineSeparator();
 
-        long id = imageOfArray.get(position).getBucketId();
-        Log.d("realme", "onBindViewHolder: "   + imagePath);
+
+         Log.d("realme", "onBindViewHolder: "   + imagePath);
 //        if (isFolder){
             holder.textView.setText(folder);
 //            holder.textView.setVisibility(View.VISIBLE);
@@ -68,7 +64,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
 //          else {
 //              holder.textView.setVisibility(View.GONE);
              holder.imageView.setVisibility(View.VISIBLE);
-             holder.textView.setText(folder);
+             holder.textView.setText(folder +newline+"("+ folderSize+")");
              Glide.with(context).load(folders.getFirstImage()).into(holder.imageView);
 
 //    }

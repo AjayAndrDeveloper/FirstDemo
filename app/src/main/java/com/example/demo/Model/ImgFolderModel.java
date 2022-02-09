@@ -1,19 +1,13 @@
 package com.example.demo.Model;
 
-public class GalleryModel {
+public class ImgFolderModel {
     String FolderName;
     String ImagePath;
       int numberOfPics = 0;
       String firstImage;
-      long bucketId;
 
-    public long getBucketId() {
-        return bucketId;
-    }
 
-    public void setBucketId(long bucketId) {
-        this.bucketId = bucketId;
-    }
+
 
     public String getFirstImage() {
         return firstImage;
@@ -31,9 +25,9 @@ public class GalleryModel {
         this.numberOfPics = numberOfPics;
     }
 
-    public GalleryModel() {
+    public ImgFolderModel() {
     }
-    public GalleryModel(String imagePath, String folderName) {
+    public ImgFolderModel(String imagePath, String folderName) {
         FolderName = folderName;
         ImagePath = imagePath;
     }

@@ -68,7 +68,7 @@ public class BigPhotoActivity extends AppCompatActivity implements CurrentItemLi
 //        recyclerView.setOnFlingListener(snapHelper);
 
         lastPos = position;
-        recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(imageListAdapter);
         imageListAdapter.notifyDataSetChanged();
         recyclerView.scrollToPosition(position);
@@ -87,11 +87,11 @@ public class BigPhotoActivity extends AppCompatActivity implements CurrentItemLi
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                imageListAdapter.notifyDataSetChanged(position);
+//                imageListAdapter.notifyDataSetChanged( );
 //                recyclerView.getAdapter().notifyDataSetChanged();
 //                recyclerView.scrollToPosition( position);
 
-
+//                recyclerView.smoothScrollToPosition(position);
             }
 
             @Override

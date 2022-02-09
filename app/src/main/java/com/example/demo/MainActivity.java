@@ -13,6 +13,7 @@ import com.example.demo.Activity.GalleryActivity;
 import com.example.demo.Activity.GridLayoutExampleActivity;
 import com.example.demo.Activity.JsonPracticeActivity;
 import com.example.demo.Activity.QuotesCategoryActivity;
+import com.example.demo.Activity.VideoGalleryOptionActivity;
 import com.example.demo.Utilies.CommonIntent;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonIntent.intentActivity(MainActivity.this, GalleryActivity.class);
+                CommonIntent.intentActivity(MainActivity.this, VideoGalleryOptionActivity.class);
             }
         });
 

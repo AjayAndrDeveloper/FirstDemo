@@ -6,24 +6,24 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.example.demo.Model.GalleryModel;
+import com.example.demo.Model.ImgFolderModel;
 
 import java.util.ArrayList;
 
 public class ImageGallery {
 
 
-    public static ArrayList<GalleryModel> listOfImages(Context context) {
+    public static ArrayList<ImgFolderModel> listOfImages(Context context) {
         Uri uri;
         Cursor cursor;
         int column_index_data, column_index_folder_name;
-        ArrayList<GalleryModel> listOfAllImages = new ArrayList<>();
+        ArrayList<ImgFolderModel> listOfAllImages = new ArrayList<>();
         ArrayList<String> picPaths = new ArrayList<>();
         String dataPath,folderName,idBucket;
 
         uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         String[] projection = {MediaStore.MediaColumns.DATA,
-                MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME,MediaStore.Images.Media.BUCKET_ID};
+                MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME};
         String orderBy = MediaStore.Images.ImageColumns.DATE_TAKEN+" DESC ";
 //        String where = MediaStore.Files.FileColumns.MIME_TYPE + "=?"
 //                +" OR " +MediaStore.Files.FileColumns.MIME_TYPE + "=?"
@@ -36,32 +36,30 @@ public class ImageGallery {
         cursor = context.getContentResolver().query(uri, projection, null, null, null);
         column_index_data = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-        int id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
 
             if (cursor != null) {
                 cursor.moveToFirst();
             }
             do {
-                GalleryModel galleryModel = new GalleryModel();
+                ImgFolderModel imgFolderModel = new ImgFolderModel();
                 String folder = cursor.getString(column_index_folder_name);
                 dataPath = cursor.getString(column_index_data);
-                idBucket = cursor.getString(id);
+
                 String folderpaths = dataPath.substring(0, dataPath.lastIndexOf(folder + "/"));
                 folderpaths = folderpaths + folder + "/";
                 if (!picPaths.contains(folderpaths)) {
                     picPaths.add(folderpaths);
-                    galleryModel.setBucketId(id);
-                    galleryModel.setImagePath(folderpaths);
-                    galleryModel.setFolderName(folder);
-                    galleryModel.setFirstImage(dataPath);
-                    galleryModel.addpics();
-                    listOfAllImages.add(galleryModel);
+                    imgFolderModel.setImagePath(folderpaths);
+                    imgFolderModel.setFolderName(folder);
+                    imgFolderModel.setFirstImage(dataPath);
+                    imgFolderModel.addpics();
+                    listOfAllImages.add(imgFolderModel);
 
                 } else {
                     for (int i = 0; i<listOfAllImages.size(); i++) {
                         if (listOfAllImages.get(i).getImagePath().equals(folderpaths)){
                             listOfAllImages.get(i).setFirstImage(dataPath);
-                            listOfAllImages.get(i).setBucketId(id);
+
                             listOfAllImages.get(i).addpics();
 
                         }
