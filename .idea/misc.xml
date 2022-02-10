@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/delete_24.xml" value="0.2890625" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_arrow_left.xml" value="0.2569444444444444" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2569444444444444" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.2534246575342466" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_iconmonstr_heart_red.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_iconmonstr_heart_thin.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/quotes_border.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/rounded_bg.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/rounded_un_select_bg.xml" value="0.2569444444444444" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/video_rounded_bg.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/activity_big_photo.xml" value="0.24259259259259258" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/activity_exit.xml" value="0.24259259259259258" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/activity_favorite_quotes.xml" value="0.27291666666666664" />

@@ -5,6 +5,7 @@
     android:layout_margin="@dimen/_10sdp"
     android:background="@drawable/quotes_border"
     android:id="@+id/container"
+    android:padding="@dimen/_4sdp"
     android:layout_height="@dimen/_150sdp">
 
     <ImageView

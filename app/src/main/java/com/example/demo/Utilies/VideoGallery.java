@@ -9,6 +9,7 @@ import android.util.Log;
 import com.example.demo.Activity.VideoListByFolder;
 import com.example.demo.Model.VideoFolderModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class VideoGallery {
@@ -19,7 +20,9 @@ public class VideoGallery {
         ArrayList<String> videoPaths = new ArrayList<>();
 
 
-        String column_index_data, column_index_folder_name, data_size, display_name, column_id, thumb;
+        String column_index_data, column_index_folder_name, display_name, column_id, thumb;
+        long duration = 0;
+        long data_size;
 
 
         Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
@@ -30,7 +33,8 @@ public class VideoGallery {
                 MediaStore.Video.Media.DISPLAY_NAME,
                 MediaStore.Video.Media.SIZE,
                 MediaStore.Video.Media._ID,
-                MediaStore.Video.Thumbnails.DATA};
+                MediaStore.Video.Thumbnails.DATA,
+                MediaStore.Video.VideoColumns.DURATION};
 
         final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
 
@@ -40,7 +44,7 @@ public class VideoGallery {
             Log.d("abc123", "getVideos: " + VideoListByFolder.abc);
             VideoListByFolder.abc = false;
         } else {
-            cursor = context.getContentResolver().query(uri, projection, selection, new String[]{"%" + path + "%"}, orderBy);
+            cursor = context.getContentResolver().query(uri, projection, selection, new String[]{"%" + path + "%" }, orderBy);
             Log.d("abc123", "getVideos: " + path);
             VideoListByFolder.abc = true;
         }
@@ -52,11 +56,11 @@ public class VideoGallery {
             column_index_data = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
             column_index_folder_name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME));
             display_name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME));
-            data_size = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE));
+            data_size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE));
             column_id = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
             thumb = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Thumbnails.DATA));
-
-
+            duration =  cursor.getLong(cursor.getColumnIndex(MediaStore.Video.VideoColumns.DURATION));
+            String strDataSize = changedData(data_size);
             VideoFolderModel videoFolderModel = new VideoFolderModel();
             String folderPaths = column_index_data.substring(0, column_index_data.lastIndexOf(column_index_folder_name + "/"));
             folderPaths = folderPaths + column_index_folder_name + "/";
@@ -70,9 +74,10 @@ public class VideoGallery {
                     videoFolderModel.setColumn_index_data(column_index_data);
                     videoFolderModel.setColumn_index_folder_name(column_index_folder_name);
                     videoFolderModel.setDisplay_name(display_name);
-                    videoFolderModel.setData_size(data_size);
+                    videoFolderModel.setData_size(strDataSize);
                     videoFolderModel.setColumn_id(column_id);
                     videoFolderModel.setThumb(thumb);
+                    videoFolderModel.setDuration(duration);
                     Log.d("hiiii", " hello ");
                     videoFolderModel.addVid();
                     allVideos.add(videoFolderModel);
@@ -89,11 +94,12 @@ public class VideoGallery {
                 videoPaths.add(folderPaths);
 //                videoFolderModel.setImagePath(folderPaths);
                 videoFolderModel.setColumn_index_data(column_index_data);
-                videoFolderModel.setColumn_index_folder_name(folderPaths);
+                videoFolderModel.setColumn_index_folder_name(thumb);
                 videoFolderModel.setDisplay_name(display_name);
-                videoFolderModel.setData_size(data_size);
+                videoFolderModel.setData_size(strDataSize);
                 videoFolderModel.setColumn_id(column_id);
                 videoFolderModel.setThumb(thumb);
+                videoFolderModel.setDuration(duration);
                 Log.d("hiiii", " hello ");
                 videoFolderModel.addVid();
                 allVideos.add(videoFolderModel);
@@ -109,4 +115,14 @@ public class VideoGallery {
 
 
     }
-}
+
+    private static String changedData(long data_size) {
+//
+        if (data_size <= 0)
+            return "0";
+        final String[] units = new String[] { "B", "KB", "MB", "GB", "TB" };
+        int digitGroups = (int) (Math.log10(data_size) / Math.log10(1024));
+        return new DecimalFormat("#,##0.#").format(data_size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+
+
+}}

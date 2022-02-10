@@ -17,27 +17,35 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activity.VideoActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".Activity.VideoListByFolder"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.VideoGalleryOptionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.VideoFolderActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.BigPhotoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.ImageDisplayActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.GalleryActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.ExitActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -3,7 +3,19 @@ package com.example.demo.Model;
 public class VideoFolderModel {
     String column_index_data, column_index_folder_name,data_size,display_name,column_id,thumb;
     int numberOfVideo = 0;
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    long duration;
     String imagePath;
+
+
 
     public String getImagePath() {
         return imagePath;
