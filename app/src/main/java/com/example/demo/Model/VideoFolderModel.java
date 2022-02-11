@@ -1,6 +1,8 @@
 package com.example.demo.Model;
 
-public class VideoFolderModel {
+import java.io.Serializable;
+
+public class VideoFolderModel implements Serializable {
     String column_index_data, column_index_folder_name,data_size,display_name,column_id,thumb;
     int numberOfVideo = 0;
 

@@ -42,22 +42,19 @@ public class QuotesCategoryActivity extends AppCompatActivity implements Categor
 
         categories = getResources().getStringArray(R.array.categoryList);
         imageUrl = getResources().getStringArray(R.array.imageUrlList);
-        Log.d("category","oncreate:"+categories.length);
+        Log.d("category", "oncreate:" + categories.length);
 
         Intent intent = getIntent();
-      msg  = intent.getStringExtra("To");
+        msg = intent.getStringExtra("To");
         Toast.makeText(QuotesCategoryActivity.this, msg, Toast.LENGTH_SHORT).show();
 //        String msgForCombo = intent.getStringExtra("To a viewPage Activity");
-        for(int i=0 ;i<categories.length;i++)
-
-        {
-            categoryArrayList.add(new Category(categories[i],imageUrl[i]));
+        for (int i = 0; i < categories.length; i++) {
+            categoryArrayList.add(new Category(categories[i], imageUrl[i]));
 //            Log.d("checkingArray", "onCreate: "+categories[i]);
 
         }
-            recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-            recyclerView.setAdapter(new QuotesCategoryAdapter(categoryArrayList, this, this));
-
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(new QuotesCategoryAdapter(categoryArrayList, this, this));
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -77,16 +74,17 @@ public class QuotesCategoryActivity extends AppCompatActivity implements Categor
                     public void onClick(View v) {
 
                         String catString = editText.getText().toString();
-                        if (catString.trim().isEmpty()){
+                        if (catString.trim().isEmpty()) {
                             Toast.makeText(QuotesCategoryActivity.this, "please add category", Toast.LENGTH_SHORT).show();
-                        }else{
-                        Toast.makeText(QuotesCategoryActivity.this, catString, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(QuotesCategoryActivity.this, catString, Toast.LENGTH_SHORT).show();
 
 //                            categoryArrayList.add(categoryArrayList.size(),catString," data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAACVBMVEX///8AAAAEBAQaWQCcAAABAElEQVR4nO3PARHAMAgAMZh/data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDw0NDQ8NDQ0NDQ0NDQ0NDQ8NDw0NFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDg0PEisZFRkrKysrKysrKysrKystKysrLSsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKwBJgMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAAAQIH/8QAIhABAQACAAQHAAAAAAAAAAAAAAERIQJBgfEiMVFhcbHw/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO4gAAAlvlrr6KAAAAJICgAAAAAAAAAAAAAAAM8XFZeHEtluLczw6tzfrq0AAAAAAAAAAAAAAAAAAAAAAAAAAAAACZ7qAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJfZQAAAAAgAAAAAAAAAAAAAAAAAACfvlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAJYCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAARQAAAAAAAAAAAAEwoAAAACSqAAAAAAAAAAAAAAAAAAAAAAAAAAAAACXPLW5yzrKgAAAAAAAAAAAAAAAmFAAAAAAAABKoAAAAA//Z ",)
-                            categoryArrayList.add(new Category(catString,"  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAACVBMVEX///8AAAAEBAQaWQCcAAABAElEQVR4nO3PARHAMAgAMZh/data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDw0NDQ8NDQ0NDQ0NDQ0NDQ8NDw0NFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDg0PEisZFRkrKysrKysrKysrKystKysrLSsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKwBJgMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAAAQIH/8QAIhABAQACAAQHAAAAAAAAAAAAAAERIQJBgfEiMVFhcbHw/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO4gAAAlvlrr6KAAAAJICgAAAAAAAAAAAAAAAM8XFZeHEtluLczw6tzfrq0AAAAAAAAAAAAAAAAAAAAAAAAAAAAACZ7qAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJfZQAAAAAgAAAAAAAAAAAAAAAAAACfvlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAJYCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAARQAAAAAAAAAAAAEwoAAAACSqAAAAAAAAAAAAAAAAAAAAAAAAAAAAACXPLW5yzrKgAAAAAAAAAAAAAAAmFAAAAAAAABKoAAAAA//Z" ));
+                            categoryArrayList.add(new Category(catString, "  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAACVBMVEX///8AAAAEBAQaWQCcAAABAElEQVR4nO3PARHAMAgAMZh/data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDw0NDQ8NDQ0NDQ0NDQ0NDQ8NDw0NFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDg0PEisZFRkrKysrKysrKysrKystKysrLSsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKwBJgMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAAAQIH/8QAIhABAQACAAQHAAAAAAAAAAAAAAERIQJBgfEiMVFhcbHw/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO4gAAAlvlrr6KAAAAJICgAAAAAAAAAAAAAAAM8XFZeHEtluLczw6tzfrq0AAAAAAAAAAAAAAAAAAAAAAAAAAAAACZ7qAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJfZQAAAAAgAAAAAAAAAAAAAAAAAACfvlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAJYCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAARQAAAAAAAAAAAAEwoAAAACSqAAAAAAAAAAAAAAAAAAAAAAAAAAAAACXPLW5yzrKgAAAAAAAAAAAAAAAmFAAAAAAAABKoAAAAA//Z"));
                             alertDialog.cancel();
 
-                        }}
+                        }
+                    }
                 });
             }
         });
@@ -94,18 +92,18 @@ public class QuotesCategoryActivity extends AppCompatActivity implements Categor
 
 
     @Override
-    public void onCategoryClick(String categoryName,int catPosition,Category category) {
+    public void onCategoryClick(String categoryName, int catPosition, Category category) {
         Toast.makeText(this, categoryName + catPosition + category.getCategory(), Toast.LENGTH_SHORT).show();
 
-        if (msg.equals("QuoteActivity")){
-        Intent intent =  new Intent(this,QuoteActivity.class);
-        intent.putExtra("position",catPosition);
-        intent.putExtra("categoryName",categoryName);
-        intent.putExtra("Category",category);
-        startActivity(intent);}
-        else {
-            Intent intent = new Intent(this,TxtImageComboActivity.class);
-            intent.putExtra("categoryName",categoryName);
+        if (msg.equals("QuoteActivity")) {
+            Intent intent = new Intent(this, QuoteActivity.class);
+            intent.putExtra("position", catPosition);
+            intent.putExtra("categoryName", categoryName);
+            intent.putExtra("Category", category);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, TxtImageComboActivity.class);
+            intent.putExtra("categoryName", categoryName);
             startActivity(intent);
         }
     }

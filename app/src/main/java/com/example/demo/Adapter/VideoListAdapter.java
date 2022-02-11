@@ -56,7 +56,9 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
             public void onClick(View v) {
                 Intent intent = new Intent(context, VideoActivity.class);
                 intent.putExtra("video", arrayList.get(position).getColumn_index_data());
+
                 intent.putExtra("PathList", videoPath);
+                intent.putExtra("arrayList", arrayList);
                 intent.putExtra("position", position);
                 context.startActivity(intent);
             }

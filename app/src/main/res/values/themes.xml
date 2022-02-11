@@ -14,4 +14,9 @@
         <item name="android:windowFullscreen">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="MyRipple">
+        <item name="colorControlHighlight">@color/red2</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
 </resources>

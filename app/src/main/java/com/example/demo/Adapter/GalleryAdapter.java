@@ -23,12 +23,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     ArrayList<ImgFolderModel> imageOfArray = new ArrayList<>();
     Context context;
     protected FolderListener folderListener;
-    boolean isFolder = true;
+    boolean isGrid ;
 
-    public GalleryAdapter(ArrayList<ImgFolderModel> imageOfArray, Context context, FolderListener folderListener) {
+    public GalleryAdapter(ArrayList<ImgFolderModel> imageOfArray, Context context, FolderListener folderListener,Boolean isGrid) {
         this.imageOfArray = imageOfArray;
         this.context = context;
         this.folderListener = folderListener;
+        this.isGrid = isGrid;
     }
 //  public void setData(ArrayList<GalleryModel> list,boolean isFolder){
 //        imageOfArray =  new ArrayList<>();
