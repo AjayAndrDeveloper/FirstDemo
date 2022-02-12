@@ -4,8 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:weightSum="2"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
+<!--    <View-->
+<!--        android:id="@+id/view"-->
+<!--        android:layout_width="@dimen/_150sdp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        tools:layout_editor_absoluteY="-1dp"></View>-->
+
+<!--    <View-->
+<!--        android:id="@+id/view2"-->
+<!--        android:layout_width="@dimen/_150sdp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"></View>-->
 
     <LinearLayout
         android:id="@+id/videoView_one_layout"
@@ -67,6 +81,7 @@
             android:src="@drawable/ic_baseline_highlight_24" />
 
         <SeekBar
+
             android:id="@+id/videoView_brightness"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"

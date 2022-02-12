@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,6 +36,7 @@ import com.example.demo.Model.VideoFolderModel;
 import com.example.demo.R;
 
 import java.util.ArrayList;
+import java.util.jar.JarEntry;
 
 public class VideoActivity extends AppCompatActivity {
     VideoView videoView;
@@ -41,12 +45,15 @@ public class VideoActivity extends AppCompatActivity {
     ArrayList<VideoFolderModel> nameList;
     //    ImageView backImage , lockImage;
     boolean flag = true;
-    RelativeLayout zoomLayout,coverLayout;
-    boolean isOpen = true , isEnable=true;
+    RelativeLayout zoomLayout, coverLayout;
+    boolean isOpen = true, isEnable = true;
+    int brightness;
+    private Window window;
+    private ContentResolver contentResolver;
 
     //    following Items from custom_controls
     LinearLayout videoView_one_layout, videoView_two_layout,
-            videoView_three_layout, videoView_four_layout,video_five_layout,videoView_lock_screen,video_unlock_layout,videoView_rotation;
+            videoView_three_layout, videoView_four_layout, video_five_layout, videoView_lock_screen, video_unlock_layout, videoView_rotation;
     ImageButton goBack, menu, forward, rewind, playPause;
     TextView videoView_title, videoView_endTime;
     SeekBar videoView_brightness, videoView_seekbar;
@@ -57,7 +64,15 @@ public class VideoActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_video);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.System.canWrite(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivity(intent);
+            }
+        }
         videoView = findViewById(R.id.videoView2);
+
 
 
         //    following Items from custom_controls
@@ -67,9 +82,9 @@ public class VideoActivity extends AppCompatActivity {
         videoView_three_layout = findViewById(R.id.videoView_three_layout);
         videoView_four_layout = findViewById(R.id.videoView_four_layout);
         video_five_layout = findViewById(R.id.video_five_layout);
-        videoView_lock_screen= findViewById(R.id.videoView_lock_screen);
-        video_unlock_layout= findViewById(R.id.video_unlock_layout);
-        videoView_rotation=findViewById(R.id.videoView_rotation);
+        videoView_lock_screen = findViewById(R.id.videoView_lock_screen);
+        video_unlock_layout = findViewById(R.id.video_unlock_layout);
+        videoView_rotation = findViewById(R.id.videoView_rotation);
         goBack = findViewById(R.id.videoView_go_back);
         menu = findViewById(R.id.videoView_more);
         rewind = findViewById(R.id.videoView_rewind);
@@ -99,10 +114,10 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int orientation = getResources().getConfiguration().orientation;
-                if (orientation== Configuration.ORIENTATION_PORTRAIT){
+                if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-                }else {
+                } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
                 }
@@ -111,12 +126,12 @@ public class VideoActivity extends AppCompatActivity {
         coverLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isEnable){
+                if (isEnable) {
                     video_unlock_layout.setVisibility(View.GONE);
-                    isEnable=false;
-                }else {
+                    isEnable = false;
+                } else {
                     video_unlock_layout.setVisibility(View.VISIBLE);
-                    isEnable=true;
+                    isEnable = true;
                 }
 
             }
@@ -124,7 +139,6 @@ public class VideoActivity extends AppCompatActivity {
         videoView_lock_screen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 //                video_five_layout.setVisibility(View.VISIBLE);
                 hideDefaultControls();
                 flag = false;
@@ -147,9 +161,9 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                video_five_layout.setVisibility(View.GONE);
-                 coverLayout.setVisibility(View.GONE);
-                 showDefaultControls();
-                flag =true;
+                coverLayout.setVisibility(View.GONE);
+                showDefaultControls();
+                flag = true;
 
             }
         });
@@ -163,8 +177,6 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //              1000msec=1sec  10000msec = 10sec
-
-
                 videoView.seekTo(videoView.getCurrentPosition() - 10000);
             }
         });
@@ -177,7 +189,6 @@ public class VideoActivity extends AppCompatActivity {
                 } else {
                     videoView.start();
                     playPause.setImageResource(R.drawable.ic_baseline_pause_circle_outline_24);
-
                 }
             }
         });
@@ -226,14 +237,58 @@ public class VideoActivity extends AppCompatActivity {
 //
 //        videoView.start();
 
+
+
+
+
+
+            window = getWindow();
+        //Getting Current screen brightness.
+        brightness = Settings.System.getInt(getApplicationContext().getContentResolver(),Settings.System.SCREEN_BRIGHTNESS,0);
+        videoView_brightness.setProgress(brightness);
+        videoView_brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Settings.System.putInt(getApplicationContext().getContentResolver(),Settings.System.SCREEN_BRIGHTNESS,progress);
+
+                if(progress<=30)
+                {
+                    //Set the brightness to 20
+                    brightness=30;
+                }
+                else //brightness is greater than 20
+                {
+                    //Set brightness variable based on the progress bar
+                    brightness = progress;
+                }
+                //Calculate the brightness percentage
+//                float perc = (brightness /(float)255)*100;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
+           WindowManager.LayoutParams layoutParams = window.getAttributes();
+                layoutParams.screenBrightness = brightness / (float)255;
+                window.setAttributes(layoutParams);
+
+
+
+            }
+        });
         initializeSeekBars();
         setHandler();
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 videoView_seekbar.setMax(videoView.getDuration());
-//                videoView_brightness.setMax(255);
-//                curBrightnessValue = 0;
+                videoView_brightness.setMax(255);
+                curBrightnessValue = 0;
 
                 videoView.start();
             }
@@ -313,13 +368,13 @@ public class VideoActivity extends AppCompatActivity {
         videoView_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser){
+                if (fromUser) {
                     videoView.seekTo(progress);
                     videoView.start();
 
 
                     int currentPosition = videoView.getCurrentPosition();
-                    videoView_endTime.setText(""+ VideoListAdapter.convertMillieToHMmSs(videoView.getDuration()-currentPosition));
+                    videoView_endTime.setText("" + VideoListAdapter.convertMillieToHMmSs(videoView.getDuration() - currentPosition));
                 }
 
             }
@@ -334,54 +389,24 @@ public class VideoActivity extends AppCompatActivity {
 
             }
         });
-//        try {
-//            curBrightnessValue = android.provider.Settings.System.getInt(
-//                    getContentResolver(),
-//                    android.provider.Settings.System.SCREEN_BRIGHTNESS);
-//        } catch (Settings.SettingNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        int screen_brightness = (int) curBrightnessValue;
-//        videoView_brightness.setProgress(screen_brightness);
-//        videoView_brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            int progress = 0;
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                progress = progress;
-//
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//                android.provider.Settings.System.putInt(getContentResolver(),
-//                        android.provider.Settings.System.SCREEN_BRIGHTNESS,
-//                        progress);
-//            }
-//        });
+
     }
 
 
-
-    private void setHandler(){
+    private void setHandler() {
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if (videoView.getDuration()>0){
+                if (videoView.getDuration() > 0) {
                     int currentPosition = videoView.getCurrentPosition();
                     videoView_seekbar.setProgress(currentPosition);
-                    videoView_endTime.setText(" "+ VideoListAdapter.convertMillieToHMmSs(videoView.getDuration()-currentPosition));
+                    videoView_endTime.setText(" " + VideoListAdapter.convertMillieToHMmSs(videoView.getDuration() - currentPosition));
                 }
-                handler.postDelayed(this,0);
+                handler.postDelayed(this, 0);
             }
         };
-        handler.postDelayed(runnable,500);
+        handler.postDelayed(runnable, 500);
     }
 
     //  For the Show And Hide the Items_-=---=-=-=-==-=-====-========-------===========--------=>
@@ -390,24 +415,7 @@ public class VideoActivity extends AppCompatActivity {
         videoView_two_layout.setVisibility(View.GONE);
         videoView_three_layout.setVisibility(View.GONE);
         videoView_four_layout.setVisibility(View.GONE);
-//        final Window window = getWindow();
-//        if (window == null) {
-//            return;
-//        }
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        final View decorView = window.getDecorView();
-//        int uiOption = decorView.getSystemUiVisibility();
-//        if (Build.VERSION.SDK_INT >= 14) {
-//            uiOption &= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-//        }
-//        if (Build.VERSION.SDK_INT >= 16) {
-//            uiOption &= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-//        }
-//        if (Build.VERSION.SDK_INT >= 19) {
-//            uiOption &= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-//        }
-//        decorView.setSystemUiVisibility(uiOption);
+
 
     }
 
@@ -416,34 +424,14 @@ public class VideoActivity extends AppCompatActivity {
         videoView_two_layout.setVisibility(View.VISIBLE);
         videoView_three_layout.setVisibility(View.VISIBLE);
         videoView_four_layout.setVisibility(View.VISIBLE);
-        //todo this function will show status and navigation when we click on screen
-//        final Window window = this.getWindow();
-//        if (window == null) {
-//            return;
-//        }
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-//        final View decorView = window.getDecorView();
-//        if (decorView != null) {
-//            int uiOption = decorView.getSystemUiVisibility();
-//            if (Build.VERSION.SDK_INT >= 14) {
-//                uiOption &= ~View.SYSTEM_UI_FLAG_LOW_PROFILE;
-//            }
-//            if (Build.VERSION.SDK_INT >= 16) {
-//                uiOption &= ~View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-//            }
-//            if (Build.VERSION.SDK_INT >= 19) {
-//                uiOption &= ~View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-//            }
-//            decorView.setSystemUiVisibility(uiOption);
-//        }
+
     }
 
 
     @Override
     public void onBackPressed() {
         if (flag) {
-        super.onBackPressed();
+            super.onBackPressed();
         } else {
             video_unlock_layout.setVisibility(View.VISIBLE);
             Toast.makeText(VideoActivity.this, "Your Screen is lock", Toast.LENGTH_SHORT).show();

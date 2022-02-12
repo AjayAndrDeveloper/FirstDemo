@@ -20,12 +20,27 @@
 
     <TextView
         android:id="@+id/folderHead"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_12sdp"
+
         android:layout_marginStart="16dp"
-        android:gravity="center"
+        android:gravity="start"
+        android:paddingLeft="@dimen/_10sdp"
+
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/swapImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_baseline_swap_vert_24"
+        app:layout_constraintBottom_toBottomOf="@+id/folderHead"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toEndOf="@+id/folderHead"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,9 +47,9 @@ public class GalleryActivity extends AppCompatActivity implements FolderListener
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_READ_PERMISSION_CODE);
 
         } else {
+
             LoadImage();
         }
-        recyclerView.setAdapter(galleryAdapter);
         if (imageArray.size() > 0) {
             galleryNumber.setText("Photos +(" + imageArray.size() + ")");
         }
@@ -57,28 +57,37 @@ public class GalleryActivity extends AppCompatActivity implements FolderListener
             @Override
             public void onClick(View v) {
                 if (isGrid) {
-
-                    LoadImage();
                     isGrid = false;
-                } else {
                     LoadImage();
+                } else {
                     isGrid = true;
+                    LoadImage();
                 }
             }
         });
     }
 
     private void LoadImage() {
-//        recyclerView.setHasFixedSize(true);
-        if (isGrid) {
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-        } else {
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        }
-//        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         imageArray = ImageGallery.listOfImages(this);
         galleryAdapter = new GalleryAdapter(imageArray, this, this,isGrid);
+        recyclerView.setHasFixedSize(true);
+        if (isGrid) {
+//       galleryAdapter.setVIEW_TYPE(0);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+            recyclerView.setAdapter(galleryAdapter);
+
+        }
+        else {
+//            galleryAdapter.setVIEW_TYPE(1);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+             recyclerView.setAdapter(galleryAdapter);
+
+        }
+
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+//        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+//        imageArray = ImageGallery.listOfImages(this);
+
     }
 
     @Override
