@@ -58,46 +58,46 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/videoView_two_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_160sdp"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/videoView_four_layout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/videoView_one_layout">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/videoView_two_layout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="@dimen/_160sdp"-->
+<!--        android:layout_marginStart="@dimen/_25sdp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/videoView_four_layout"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/videoView_one_layout">-->
 
 
-        <ImageView
-            android:id="@+id/videoView_brightness_image"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginBottom="7dp"
-            android:layout_weight="0"
-            android:src="@drawable/ic_baseline_highlight_24" />
+<!--        <ImageView-->
+<!--            android:id="@+id/videoView_brightness_image"-->
+<!--            android:layout_width="@dimen/_24sdp"-->
+<!--            android:layout_height="@dimen/_24sdp"-->
+<!--            android:layout_marginStart="@dimen/_4sdp"-->
+<!--            android:layout_marginLeft="@dimen/_5sdp"-->
+<!--            android:layout_marginBottom="7dp"-->
+<!--            android:layout_weight="0"-->
+<!--            android:src="@drawable/ic_baseline_highlight_24" />-->
 
-        <SeekBar
+<!--&lt;!&ndash;        <SeekBar&ndash;&gt;-->
 
-            android:id="@+id/videoView_brightness"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-50dp"
-            android:layout_marginLeft="-50dp"
-            android:layout_weight="1"
-            android:max="255"
-            android:progress="150"
-            android:progressBackgroundTint="@color/white"
-            android:progressTint="@color/teal_200"
-            android:rotation="270"
-            android:scaleY="3"
-            android:thumb="@null"/>
-<!--            tools:targetApi="lollipop" -->
+<!--&lt;!&ndash;            android:id="@+id/videoView_brightness"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="@dimen/_120sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginStart="-50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginLeft="-50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:max="255"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:progress="150"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:progressBackgroundTint="@color/white"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:progressTint="@color/teal_200"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:rotation="270"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:scaleY="3"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:thumb="@null"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            tools:targetApi="lollipop" &ndash;&gt;-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/videoView_three_layout"
