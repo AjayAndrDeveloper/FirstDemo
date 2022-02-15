@@ -2,12 +2,14 @@ package com.example.demo.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -23,9 +25,11 @@ import java.util.ArrayList;
 
 public class ImageByFolderAdapter extends RecyclerView.Adapter<ImageByFolderAdapter.FolderViewHolder> {
     ArrayList<ImageByFolderModel> imageList;
+    ArrayList<String> selected_List= new ArrayList<>();
     Context context;
     PhotosClickListener photosClickListener;
-    public  Boolean isGrid;
+    public  Boolean isGrid ;
+   static boolean isSelected ;
 
     public ImageByFolderAdapter(ArrayList<ImageByFolderModel> imageList, Context context, PhotosClickListener photosClickListener) {
         this.imageList = imageList;
@@ -70,7 +74,41 @@ public class ImageByFolderAdapter extends RecyclerView.Adapter<ImageByFolderAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                photosClickListener.PhotoClickListener(holder, position, imageList);
+
+                Log.d("isSelected", "onClick: " + isSelected);
+                if (isSelected) {
+
+                    photosClickListener.PhotoClickListener(holder, position, imageList);
+                }else {
+                    isSelected = true;
+
+                }
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                if (selected_List.contains(imageList.get(position).getPicturePath()))
+                {   Toast.makeText(context, "OnLong Pressed", Toast.LENGTH_SHORT).show();
+                    holder.itemView.setBackgroundResource(R.color.Transparent);
+                    selected_List.remove(imageList.get(position).getPicturePath());
+                    isSelected=false;
+
+
+                }
+                else {
+                    holder.itemView.setBackgroundResource(R.drawable.rounded_bg);
+                    selected_List.add(imageList.get(position).getPicturePath());
+                    isSelected=false;
+
+                }
+                if (selected_List.size()==0){
+                    isSelected=false;
+                }
+
+
+                return false;
             }
         });
 

@@ -5,7 +5,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.demo.Fragments.TextFragment;
 import com.example.demo.Model.QuotesModel;
 import com.example.demo.R;
 
@@ -67,7 +65,7 @@ public class GetJsonDataAdapter extends RecyclerView.Adapter<GetJsonDataAdapter.
                 Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show();
             }
         });
-        holder.shareImage.setOnClickListener(new View.OnClickListener() {
+        holder.share_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
@@ -91,7 +89,7 @@ public class GetJsonDataAdapter extends RecyclerView.Adapter<GetJsonDataAdapter.
     public class JViewHolder extends RecyclerView.ViewHolder {
         TextView quotes, authorName;
         ConstraintLayout constraintLayout;
-        ImageView copyImage, shareImage;
+        ImageView copyImage, share_Btn;
 
         public JViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,7 +97,7 @@ public class GetJsonDataAdapter extends RecyclerView.Adapter<GetJsonDataAdapter.
             authorName = itemView.findViewById(R.id.authorText);
             constraintLayout = itemView.findViewById(R.id.container);
             copyImage = itemView.findViewById(R.id.copyImage);
-            shareImage = itemView.findViewById(R.id.shareImage);
+            share_Btn = itemView.findViewById(R.id.shareImage);
 
         }
     }

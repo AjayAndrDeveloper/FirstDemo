@@ -16,11 +16,13 @@
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_play_circle_outline.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_rotate_90_degrees_ccw_24.xml" value="0.11712962962962963" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_baseline_volume.xml" value="0.24074074074074073" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_iconmonstr_heart_red.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/ic_iconmonstr_heart_thin.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/quotes_border.xml" value="0.2890625" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/rounded_bg.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/rounded_un_select_bg.xml" value="0.2569444444444444" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/selected_item.xml" value="0.24074074074074073" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/video_rounded_bg.xml" value="0.2569444444444444" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/drawable/white_round.xml" value="0.4248046875" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/activity_big_photo.xml" value="0.24259259259259258" />
@@ -58,6 +60,7 @@
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/imagelist_layout.xml" value="0.5" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/quote_format.xml" value="0.192481884057971" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/quote_layout.xml" value="0.14270833333333333" />
+        <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/selected_item.xml" value="0.22268518518518518" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/staggered_layout.xml" value="0.12685185185185185" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/video_folder_layout.xml" value="0.24259259259259258" />
         <entry key="..\:/Ajay/CurrentProject/Demo/app/src/main/res/layout/video_list_layout.xml" value="0.24259259259259258" />
