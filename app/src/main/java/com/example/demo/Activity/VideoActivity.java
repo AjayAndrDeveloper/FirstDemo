@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class VideoActivity extends AppCompatActivity {
    VideoView videoView;
-   float brightStartY, brightEndY, volumeStartY, volumeEndY;
+   float brightStartY, brightEndY, brightUpY, volumeStartY, volumeEndY;
    int position;
    ArrayList<VideoFolderModel> nameList;
    boolean flag = true;
@@ -55,6 +55,7 @@ public class VideoActivity extends AppCompatActivity {
    int brightnessValue = 255;
 
    AudioManager audioManager;
+
 
    @SuppressLint("ClickableViewAccessibility")
    @Override
@@ -110,6 +111,7 @@ public class VideoActivity extends AppCompatActivity {
 
       videoView_volume.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
       videoView_volume.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+
       right_Screen_For_Volume.setOnTouchListener(new View.OnTouchListener() {
          @Override
          public boolean onTouch(View v, MotionEvent event) {
@@ -167,11 +169,10 @@ public class VideoActivity extends AppCompatActivity {
             switch ((event.getAction())) {
                case MotionEvent.ACTION_DOWN: {
                   brightStartY = event.getY();
-
                   return true;
                }
                case MotionEvent.ACTION_UP: {
-
+                  brightUpY = event.getY();
                   if (isOpen) {
                      hideDefaultControls();
                      isOpen = false;
@@ -182,10 +183,21 @@ public class VideoActivity extends AppCompatActivity {
                   return true;
                }
                case MotionEvent.ACTION_MOVE: {
-//                  videoView_two_layout.setVisibility(View.VISIBLE);
+//                  if (videoView_brightness.getVisibility()==View.GONE && videoView_two_layout.getVisibility()==View.GONE){
+                  videoView_two_layout.setVisibility(View.VISIBLE);
+                  videoView_brightness.setVisibility(View.VISIBLE);
+                  videoView_two_layout.postDelayed(hideSeekBarRunnable, 5000);
+                  videoView_brightness.postDelayed(hideSeekBarRunnable, 5000);
+
+//               }
+//                  else{
+//                     videoView_two_layout.setVisibility(View.GONE);
+//                     videoView_brightness.setVisibility(View.GONE);}
+//
                   brightEndY = event.getY();
                   brightCountY(brightStartY, brightEndY);
-                  Log.d("video123", "onTouch: " + brightStartY + "  hello" + brightEndY);
+
+                  Log.d("testing", "onTouch: startY :" + brightStartY + "upY:" + brightUpY + "EndY:" + brightEndY);
                   return true;
                }
             }
@@ -458,7 +470,6 @@ public class VideoActivity extends AppCompatActivity {
    }
 
    private void brightCountY(float startY, float endY) {
-
       if (startY > endY) {
          increase();
          Toast.makeText(VideoActivity.this, "UP", Toast.LENGTH_SHORT).show();
@@ -494,6 +505,7 @@ public class VideoActivity extends AppCompatActivity {
       videoView_brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
          @Override
          public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
             int screenBrightnessValue = progress * 255 / 100;
 
             Settings.System.putInt(
@@ -509,11 +521,14 @@ public class VideoActivity extends AppCompatActivity {
 
          @Override
          public void onStartTrackingTouch(SeekBar seekBar) {
-
+//            videoView_two_layout.setVisibility(View.VISIBLE);
          }
 
          @Override
          public void onStopTrackingTouch(SeekBar seekBar) {
+//            videoView_brightness.setVisibility(View.GONE);
+//            videoView_two_layout.setVisibility(View.GONE);
+
 
          }
       });
@@ -535,7 +550,13 @@ public class VideoActivity extends AppCompatActivity {
       });
 
    }
-
+   private final Runnable hideSeekBarRunnable = new Runnable() {
+      @Override
+      public void run() {
+         videoView_two_layout.setVisibility(View.GONE);
+         videoView_brightness.setVisibility(View.GONE);
+      }
+   };
 
    private void setHandler() {
       Handler handler = new Handler();
@@ -556,20 +577,19 @@ public class VideoActivity extends AppCompatActivity {
    //  For the Show And Hide the Items_-=---=-=-=-==-=-====-========-------===========--------=>
    private void hideDefaultControls() {
       videoView_one_layout.setVisibility(View.GONE);
-      videoView_two_layout.setVisibility(View.GONE);
+//      videoView_two_layout.setVisibility(View.GONE);
       videoView_three_layout.setVisibility(View.GONE);
       videoView_four_layout.setVisibility(View.GONE);
-      videoView_six_layout.setVisibility(View.GONE);
+//      videoView_six_layout.setVisibility(View.GONE);
 
 
    }
-
    private void showDefaultControls() {
       videoView_one_layout.setVisibility(View.VISIBLE);
-      videoView_two_layout.setVisibility(View.VISIBLE);
+//      videoView_two_layout.setVisibility(View.VISIBLE);
       videoView_three_layout.setVisibility(View.VISIBLE);
       videoView_four_layout.setVisibility(View.VISIBLE);
-      videoView_six_layout.setVisibility(View.VISIBLE);
+//      videoView_six_layout.setVisibility(View.VISIBLE);
 
    }
 
@@ -584,8 +604,6 @@ public class VideoActivity extends AppCompatActivity {
          Toast.makeText(VideoActivity.this, "Your Screen is lock", Toast.LENGTH_SHORT).show();
       }
    }
-
-
    private void changeScreenBrightness(Context applicationContext, int brightnessValue) {
       Settings.System.putInt(
               applicationContext.getContentResolver(),
@@ -599,7 +617,6 @@ public class VideoActivity extends AppCompatActivity {
       int currBrightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightnessValue);
       videoView_brightness.setProgress(currBrightness);
    }
-
    public void decrease() {
       Log.d("increase", "decrease: " + brightnessValue);
       if (brightnessValue >= 10) {
@@ -609,7 +626,6 @@ public class VideoActivity extends AppCompatActivity {
 
       }
    }
-
    public void increase() {
       if (brightnessValue <= 255) {
          brightnessValue += 5;
